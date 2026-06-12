@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Calculator</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calculator {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            width: 320px;
+        }
+        .display {
+            font-size: 2.5rem;
+            text-align: right;
+            padding: 1rem;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        button {
+            padding: 1.2rem;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.1s, background 0.2s;
+        }
+        button:active { transform: scale(0.95); }
+        .btn-num { background: #e0e0e0; color: #333; }
+        .btn-op { background: #667eea; color: white; }
+        .btn-eq { background: #28a745; color: white; grid-column: span 2; }
+        .btn-clear { background: #dc3545; color: white; }
+        .btn-num:hover { background: #d0d0d0; }
+        .btn-op:hover { background: #5a6fd6; }
+        .btn-eq:hover { background: #218838; }
+        .btn-clear:hover { background: #c82333; }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="btn-clear" onclick="clearDisplay()">C</button>
+            <button class="btn-op" onclick="appendOp('/')">/</button>
+            <button class="btn-op" onclick="appendOp('*')">×</button>
+            <button class="btn-op" onclick="deleteChar()">⌫</button>
+            
+            <button class="btn-num" onclick="appendNum('7')">7</button>
+            <button class="btn-num" onclick="appendNum('8')">8</button>
+            <button class="btn-num" onclick="appendNum('9')">9</button>
+            <button class="btn-op" onclick="appendOp('-')">-</button>
+            
+            <button class="btn-num" onclick="appendNum('4')">4</button>
+            <button class="btn-num" onclick="appendNum('5')">5</button>
+            <button class="btn-num" onclick="appendNum('6')">6</button>
+            <button class="btn-op" onclick="appendOp('+')">+</button>
+            
+            <button class="btn-num" onclick="appendNum('1')">1</button>
+            <button class="btn-num" onclick="appendNum('2')">2</button>
+            <button class="btn-num" onclick="appendNum('3')">3</button>
+            <button class="btn-eq" onclick="calculate()">=</button>
+            
+            <button class="btn-num" style="grid-column: span 2" onclick="appendNum('0')">0</button>
+            <button class="btn-num" onclick="appendNum('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        let current = '0';
+        const display = document.getElementById('display');
+        
+        function update() {
+            display.textContent = current;
+        }
+        
+        function appendNum(n) {
+            if (current === '0' && n !== '.') current = '';
+            current += n;
+            update();
+        }
+        
+        function appendOp(op) {
+            current += op;
+            update();
+        }
+        
+        function clearDisplay() {
+            current = '0';
+            update();
+        }
+        
+        function deleteChar() {
+            if (current.length > 1) {
+                current = current.slice(0, -1);
+            } else {
+                current = '0';
+            }
+            update();
+        }
+        
+        function calculate() {
+            try {
+                current = String(eval(current));
+            } catch {
+                current = 'Error';
+            }
+            update();
+        }
+    </script>
+</body>
+</html>
