@@ -12,7 +12,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .calculator {
             background: #000;
@@ -24,39 +23,39 @@
         .display {
             background: #000;
             color: #fff;
-            font-size: 3rem;
+            font-size: 4rem;
             text-align: right;
-            padding: 20px;
-            margin-bottom: 20px;
-            min-height: 80px;
+            padding: 10px 20px;
+            margin-bottom: 15px;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            word-wrap: break-word;
         }
         .buttons {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(4, 70px);
             gap: 12px;
         }
         button {
             padding: 0;
+            width: 70px;
             height: 65px;
-            font-size: 1.8rem;
+            font-size: 2rem;
             border: none;
-            border-radius: 50%;
+            border-radius: 35px;
             cursor: pointer;
-            transition: transform 0.1s, filter 0.1s;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.3);
         }
-        button:active { transform: scale(0.92); }
+        button:active { transform: translateY(3px); box-shadow: none; }
         .btn-num {
             background: #333;
             color: #fff;
         }
-        .btn-op { background: #f39c12; color: #fff; }
-        .btn-eq { background: #3498db; color: #fff; grid-column: span 2; border-radius: 50%; }
+        .btn-op { background: #f09c12; color: #fff; }
+        .btn-eq { background: #3498db; color: #fff; grid-row: span 2; height: 142px; }
         .btn-ac { background: #e74c3c; color: #fff; }
-        .btn-zero { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; grid-column: span 2; }
+        .btn-zero { border-radius: 35px; grid-column: span 2 !important; width: 152px; margin-left: 84px; }
     </style>
 </head>
 <body>
@@ -92,9 +91,7 @@
         let current = '0';
         const display = document.getElementById('display');
         
-        function update() {
-            display.textContent = current;
-        }
+        function update() { display.textContent = current; }
         
         function appendNum(n) {
             if (current === '0' && n !== '.') current = '';
@@ -102,31 +99,19 @@
             update();
         }
         
-        function appendOp(op) {
-            current += op;
-            update();
-        }
+        function appendOp(op) { current += op; update(); }
         
-        function clearDisplay() {
-            current = '0';
-            update();
-        }
+        function clearDisplay() { current = '0'; update(); }
         
         function deleteChar() {
-            if (current.length > 1) {
-                current = current.slice(0, -1);
-            } else {
-                current = '0';
-            }
+            if (current.length > 1) current = current.slice(0, -1);
+            else current = '0';
             update();
         }
         
         function calculate() {
-            try {
-                current = String(eval(current));
-            } catch {
-                current = 'Error';
-            }
+            try { current = String(eval(current)); }
+            catch { current = 'Error'; }
             update();
         }
     </script>
