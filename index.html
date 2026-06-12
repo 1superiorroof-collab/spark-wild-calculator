@@ -12,6 +12,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         }
         .calculator {
             background: #000;
@@ -32,58 +33,59 @@
             align-items: center;
             justify-content: flex-end;
         }
-        .buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 70px);
-            gap: 12px;
-        }
+        .row { display: flex; gap: 12px; justify-content: center; }
         button {
-            padding: 0;
             width: 70px;
             height: 65px;
             font-size: 2rem;
             border: none;
-            border-radius: 35px;
+            border-radius: 50%;
             cursor: pointer;
             box-shadow: 0 3px 0 rgba(0,0,0,0.3);
         }
         button:active { transform: translateY(3px); box-shadow: none; }
-        .btn-num {
-            background: #333;
-            color: #fff;
-        }
-        .btn-op { background: #f09c12; color: #fff; }
-        .btn-eq { background: #3498db; color: #fff; grid-row: span 2; height: 142px; }
-        .btn-ac { background: #e74c3c; color: #fff; }
-        .btn-zero { border-radius: 35px; grid-column: span 2 !important; width: 152px; margin-left: 84px; }
+        .num { background: #333; color: #fff; }
+        .op { background: #f09c12; color: #fff; }
+        .eq { background: #3498db; color: #fff; width: 152px; border-radius: 35px; }
+        .ac { background: #e74c3c; color: #fff; }
+        .zero { width: 152px; border-radius: 35px; }
     </style>
 </head>
 <body>
     <div class="calculator">
         <div class="display" id="display">0</div>
-        <div class="buttons">
-            <button class="btn-ac" onclick="clearDisplay()">AC</button>
-            <button class="btn-op" onclick="appendOp('/')">÷</button>
-            <button class="btn-op" onclick="appendOp('*')">×</button>
-            <button class="btn-op" onclick="deleteChar()">⌫</button>
-            
-            <button class="btn-num" onclick="appendNum('7')">7</button>
-            <button class="btn-num" onclick="appendNum('8')">8</button>
-            <button class="btn-num" onclick="appendNum('9')">9</button>
-            <button class="btn-op" onclick="appendOp('-')">−</button>
-            
-            <button class="btn-num" onclick="appendNum('4')">4</button>
-            <button class="btn-num" onclick="appendNum('5')">5</button>
-            <button class="btn-num" onclick="appendNum('6')">6</button>
-            <button class="btn-op" onclick="appendOp('+')">+</button>
-            
-            <button class="btn-num" onclick="appendNum('1')">1</button>
-            <button class="btn-num" onclick="appendNum('2')">2</button>
-            <button class="btn-num" onclick="appendNum('3')">3</button>
-            <button class="btn-eq" onclick="calculate()">=</button>
-            
-            <button class="btn-zero btn-num" onclick="appendNum('0')">0</button>
-            <button class="btn-num" onclick="appendNum('.')">.</button>
+        
+        <div class="row">
+            <button class="ac" onclick="clearDisplay()">AC</button>
+            <button class="op" onclick="appendOp('/')">÷</button>
+            <button class="op" onclick="appendOp('*')">×</button>
+            <button class="op" onclick="deleteChar()">⌫</button>
+        </div>
+        
+        <div class="row">
+            <button class="num" onclick="appendNum('7')">7</button>
+            <button class="num" onclick="appendNum('8')">8</button>
+            <button class="num" onclick="appendNum('9')">9</button>
+            <button class="op" onclick="appendOp('-')">−</button>
+        </div>
+        
+        <div class="row">
+            <button class="num" onclick="appendNum('4')">4</button>
+            <button class="num" onclick="appendNum('5')">5</button>
+            <button class="num" onclick="appendNum('6')">6</button>
+            <button class="op" onclick="appendOp('+')">+</button>
+        </div>
+        
+        <div class="row">
+            <button class="num" onclick="appendNum('1')">1</button>
+            <button class="num" onclick="appendNum('2')">2</button>
+            <button class="num" onclick="appendNum('3')">3</button>
+            <button class="eq" onclick="calculate()">=</button>
+        </div>
+        
+        <div class="row">
+            <button class="zero num" onclick="appendNum('0')">0</button>
+            <button class="num" onclick="appendNum('.')">.</button>
         </div>
     </div>
 
