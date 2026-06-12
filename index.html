@@ -7,69 +7,71 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         .calculator {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            background: #000;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
             width: 320px;
         }
         .display {
-            font-size: 2.5rem;
+            background: #000;
+            color: #fff;
+            font-size: 3rem;
             text-align: right;
-            padding: 1rem;
-            background: #f0f0f0;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-            min-height: 60px;
+            padding: 20px;
+            margin-bottom: 20px;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
+            word-wrap: break-word;
         }
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
+            gap: 12px;
         }
         button {
-            padding: 1.2rem;
-            font-size: 1.5rem;
+            padding: 0;
+            height: 65px;
+            font-size: 1.8rem;
             border: none;
-            border-radius: 10px;
+            border-radius: 50%;
             cursor: pointer;
-            transition: transform 0.1s, background 0.2s;
+            transition: transform 0.1s, filter 0.1s;
         }
-        button:active { transform: scale(0.95); }
-        .btn-num { background: #e0e0e0; color: #333; }
-        .btn-op { background: #667eea; color: white; }
-        .btn-eq { background: #28a745; color: white; grid-column: span 2; }
-        .btn-clear { background: #dc3545; color: white; }
-        .btn-num:hover { background: #d0d0d0; }
-        .btn-op:hover { background: #5a6fd6; }
-        .btn-eq:hover { background: #218838; }
-        .btn-clear:hover { background: #c82333; }
+        button:active { transform: scale(0.92); }
+        .btn-num {
+            background: #333;
+            color: #fff;
+        }
+        .btn-op { background: #f39c12; color: #fff; }
+        .btn-eq { background: #3498db; color: #fff; grid-column: span 2; border-radius: 50%; }
+        .btn-ac { background: #e74c3c; color: #fff; }
+        .btn-zero { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; grid-column: span 2; }
     </style>
 </head>
 <body>
     <div class="calculator">
         <div class="display" id="display">0</div>
         <div class="buttons">
-            <button class="btn-clear" onclick="clearDisplay()">C</button>
-            <button class="btn-op" onclick="appendOp('/')">/</button>
+            <button class="btn-ac" onclick="clearDisplay()">AC</button>
+            <button class="btn-op" onclick="appendOp('/')">÷</button>
             <button class="btn-op" onclick="appendOp('*')">×</button>
             <button class="btn-op" onclick="deleteChar()">⌫</button>
             
             <button class="btn-num" onclick="appendNum('7')">7</button>
             <button class="btn-num" onclick="appendNum('8')">8</button>
             <button class="btn-num" onclick="appendNum('9')">9</button>
-            <button class="btn-op" onclick="appendOp('-')">-</button>
+            <button class="btn-op" onclick="appendOp('-')">−</button>
             
             <button class="btn-num" onclick="appendNum('4')">4</button>
             <button class="btn-num" onclick="appendNum('5')">5</button>
@@ -81,7 +83,7 @@
             <button class="btn-num" onclick="appendNum('3')">3</button>
             <button class="btn-eq" onclick="calculate()">=</button>
             
-            <button class="btn-num" style="grid-column: span 2" onclick="appendNum('0')">0</button>
+            <button class="btn-zero btn-num" onclick="appendNum('0')">0</button>
             <button class="btn-num" onclick="appendNum('.')">.</button>
         </div>
     </div>
